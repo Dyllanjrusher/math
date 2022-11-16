@@ -1,0 +1,108 @@
+\begin {definition} [Topology] \label {def:topology}
+A \textbf{topology} on a set $X$ is a collection $\mathcal{T}$ of subsets of $X$ satisfying the following conditions:
+\begin {enumerate}
+\item $\emptyset, X \in \mathcal{T}$
+\item If $U, V \in \mathcal{T}$, then $U \cup V \in \mathcal{T}$
+\item If $\{U_{\alpha \in \lambda}\}$ is any collection of sets of $\mathcal{T}$, then $\bigcup_{\alpha} U_{\alpha} \in \mathcal{T}$
+\end {enumerate}
+\end {definition}
+
+\begin {definition} [Topological Space] \label {def:topologicalspace}
+A \textbf{topological space} is an ordered pair $(X, \mathcal{T})$ where $X$ is a set and $\mathcal{T}$ is a topology on $X$.
+\end {definition}
+
+\begin {definition} [Open Set] \label {def:open}
+A set $U \subset \mathcal{T}$ is called an \textbf{open set} $\iff U \in \mathcal{T}$.
+\end {definition}
+
+\begin {theorem} [Theorem 1.1] \label {thm:finite collection of open sets intersection is open}
+Let $X$ be a topological space and let $\{U_{i=1}^n\}$ be a finite collection of open sets in $X$. Then $\bigcap_{i=1}^n U_i \in \mathcal{T}$.
+\end {theorem}
+
+\begin {proof}
+Let $U_{\alpha \in \lambda}$ be a finite collection of open sets in $X$.
+Consider the set $U_1 \cap U_2$, this is an open set in $X$ by definition.
+Now consider the set $U_1 \cap U_2 \cap U_3$, this is also an open set in $X$ by definition.
+Continuing in this manner, we see that $\bigcap_{i=1}^n U_i \in \mathcal{T}$.
+\end {proof}
+
+\begin {theorem} [Theorem 1.2] \label {thm:To check if a set $U$ is open, only need to check if each point $x \in U$ is in an open set $U_x \subset U$ }
+A set $U$ is open in a topological space $(X, \mathcal{T})$
+\iff for every $x \in U$, there is an open set $V$ such that $x \in U_x \subset U$.
+\end {theorem}
+
+\begin {proof}
+Let $U$ be a set in a topological space $(X, \mathcal{T})$.
+
+Suppose that $U$ is open.
+consider an arbitrary point $x \in U$.
+Then there is an open set containing $x$, namely $U$ itself.
+
+Suppose that $\forall x \in U$, there is an open set $U_x \subset U$.
+Then $U = \bigcup_{x \in U} U_x$.
+Since each $U_x$ is open, we have that $U$ is open by definition.
+\end {proof}
+
+\begin {definition} [Neighborhood] \label {def:neighborhood}
+An open set containing a point $x \in X$ is called a \textbf{neighborhood} of $x$.
+\end {definition}
+
+\begin {definition} [Standard Topology] \label {def:standardtopology}
+The \textbf{standard topology} $\mathcal{T}_{std}$ on $\mathbb{R}$ is defined as follows:
+A subset $U \subset \mathbb{R}$ is open $\iff$ for each point $p$ in $U$, there is some $\epsilon_{p} > 0$
+such that the interval $(p - \epsilon_{p}, p + \epsilon_{p})$ is contained in $U$.
+
+Sometimes write $\mathbb{R}_{std}$ to denote the topological space $(\mathbb{R}, \mathcal{T}_{std})$.
+\end {definition}
+
+\begin {definition} [Euclidean Space] \label {def:euclidean}
+A \textbf{Euclideon space} $\mathbb{R}^n$ is the set of n-tuples of real numbers.
+The \textbd{Euclidean distance} between two points $x, y \in \mathbb{R}^n$ is defined as
+$d(x, y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$
+
+The Euclidean distance allows us to define the \textbf{open ball} in $\mathbb{R}^n}$ as follows:
+Let $p \in \mathbb{R}^n$ be a point, and let $\epsilon > 0$.
+Then the open ball $B(p, \epsilon) = \{x \mid d(p, x) < \epsilon \}$
+\end {definition}
+
+\begin {exercise} 1.1 \label {ex:1.1}
+Show that $\mathbb{R}_{std}^n$ is a topological space.
+Note this is the standard topology on $\mathbb{R}^n$.
+\end {exercise}
+
+\begin {proof}
+$\emptyset \in \mathcal{R}_{std}^n$:
+The empty set is open because it satisfies Theorem 1.2 vacuously.
+
+The whole space $\mathbb{R}^n$ is open:
+Pick any $x \in \mathbb{R}^n$ and $\epsilon$ = 1.
+$B(x, 1) \subset \mathbb{R}^n$ and $B(x, 1)$ is open by definition, so $\mathbb{R}^n$ is open by Theorem 1.2.
+
+Let $U, V \in \mathcal{R}_{std}^n$.
+Then $U \cap V$ is open:
+If $U \cap V = \emptyset$, then $U \cap V$ is open by the above argument.
+If $U \cap V \neq \emptyset$, then pick any $x \in U \cap V$.
+Since U and V are open, there2 is some $\epsilon_u > 0$ such that $B(x, \epsilon_u) \subset U$ and there is some $\epsilon_v > 0$ such that $B(x, \epsilon_v) \subset V$.
+Let $\epsilon = \min(\epsilon_u, \epsilon_v)$.
+Then since $B(x, \epsilon) \subset U$ and $B(x, \epsilon) \subset V$, we have that $B(x, \epsilon) \subset U \cap V$.
+So by thm 1.2, $U \cap V$ is open.
+
+Let $\{U_{\alpha}\}_{\alpha \in \lambda}$ be a collection of open sets in $\mathcal{R}_{std}^n$.
+Then $\bigcup_{\alpha \in \lambda} U_{\alpha}$ is open:
+Pick any $x \in \bigcup_{\alpha \in \lambda} U_{\alpha}$.
+Then there is some $\alpha \in \lambda$ such that $x \in U_{\alpha}$.
+Since $U_{\alpha}$ is open, there is a $\epsilon_{\alpha} > 0$ such that $B(x, \epsilon_{\alpha}) \subset U_{\alpha}$.
+So by thm 1.2, $\bigcup_{\alpha \in \lambda} U_{\alpha}$ is open.
+
+Thus $\mathbb{R}^n$ is a topological space.
+\end {proof}
+
+\begin {definition} [Discrete Topology] \label {def:discretetopology}
+The \textbf{discrete topology} on a set $X$ is defined by $\mathcal{T}_{disc} = 2^X$, the power set of X.
+\end {definition}
+
+\begin {definition} [Indiscrete Topology] \label {def:indiscretetopology}
+The \textbf{indiscrete topology} on a set $X$ is defined by $\mathcal{T}_{indisc} = \{ \emptyset, X \}$.
+\end {definition}
+
+
